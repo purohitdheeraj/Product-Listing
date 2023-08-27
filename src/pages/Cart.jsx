@@ -29,7 +29,9 @@ export const Cart = () => {
 						alt="product-img"
 					/>
 					<div className="mr-auto ml-4">
-						<h3 className="text-md">{product.title}</h3>
+						<h3 className="text-md">
+							{product.title.slice(0, 90)}
+						</h3>
 						<button
 							onClick={() => removeFromCart(product.id)}
 							type="button"
