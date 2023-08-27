@@ -10,7 +10,7 @@ export const Footer = () => {
 						to="https://flowbite.com/"
 						className="hover:underline"
 					>
-						Flowbite™
+						Dheeraj Purohit 
 					</Link>
 					. All Rights Reserved.
 				</span>

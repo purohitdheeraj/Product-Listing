@@ -51,6 +51,10 @@ const Products = () => {
 							product={product}
 						/>
 					))}
+
+					{searchQuery && filteredData.length === 0 && (
+						<div>No Products found</div>
+					)}
 				</div>
 			</div>
 		</div>

@@ -37,6 +37,7 @@ export const Search = (props) => {
 					onChange={handleSearchQuery}
 					value={searchQuery}
 					required
+					autoComplete="off"
 				/>
 			</div>
 		</form>
