@@ -1,8 +1,8 @@
+import PropTypes from "prop-types";
 
 export const ProductCard = (props) => {
-	const { category, image, title, description, price } =
-		props.product;
-		
+	const { image, title, price } = props.product;
+
 	return (
 		<div className="flex flex-col border p-2 rounded-lg ">
 			<a href="#" className="group mb-2">
@@ -29,4 +29,10 @@ export const ProductCard = (props) => {
 			</button>
 		</div>
 	);
+};
+
+ProductCard.propTypes = {
+	product: PropTypes.object,
+	title: PropTypes.string,
+	price: PropTypes.number,
 };

@@ -5,7 +5,9 @@ import Logo from "../assets/logo.png";
 import { useEffect, useState } from "react";
 
 export const Header = () => {
-	const [darkMode, setDarkMode] = useState(true);
+	const [darkMode, setDarkMode] = useState(
+		localStorage.getItem("theme") && JSON.parse(localStorage.getItem("theme")) || false
+	);
 	const [hidden, setHidden] = useState(true);
 
 	const theme = darkMode ? (
