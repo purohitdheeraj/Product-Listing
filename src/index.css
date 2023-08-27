@@ -8,5 +8,6 @@
 
 
 .jewro-main-layout{
-  height: 90vh;
+  min-height: 90vh;
+  padding: 16px;
 }
