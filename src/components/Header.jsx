@@ -2,13 +2,19 @@ import { Link, NavLink } from "react-router-dom";
 import sunIcon from "../assets/sun.svg";
 import moonIcon from "../assets/moon.svg";
 import Logo from "../assets/logo.png";
+
 import { useEffect, useState } from "react";
+import CartIcon from "../assets/CartIcon";
+import { useCart } from "../context/CartContext";
 
 export const Header = () => {
 	const [darkMode, setDarkMode] = useState(
-		localStorage.getItem("theme") && JSON.parse(localStorage.getItem("theme")) || false
+		(localStorage.getItem("theme") &&
+			JSON.parse(localStorage.getItem("theme"))) ||
+			false
 	);
 	const [hidden, setHidden] = useState(true);
+	const { cart } = useCart();
 
 	const theme = darkMode ? (
 		<img src={sunIcon} alt="sun icon" />
@@ -36,7 +42,7 @@ export const Header = () => {
 
 	return (
 		<div>
-			<nav className="bg-white border-b-2 border-gray-200 dark:bg-gray-900">
+			<nav className="bg-white border-b-2 fixed w-full z-20 top-0 left-0 border-gray-200 dark:bg-gray-900">
 				<div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
 					<Link
 						to="https://jwero.ai/"
@@ -125,7 +131,18 @@ export const Header = () => {
 											: notActiveClass;
 									}}
 								>
-									Cart
+									<div className="flex relative justify-between">
+										<span className="hidden max-md:inline-flex ">
+											Cart
+										</span>
+										{cart.length >= 1 && (
+											<span className="bg-orange-500 text-white rounded-full w-4 h-4 text-xs flex items-center justify-center absolute -top-1 -right-2">
+												{cart.length}
+											</span>
+										)}
+
+										<CartIcon />
+									</div>
 								</NavLink>
 							</li>
 						</ul>
