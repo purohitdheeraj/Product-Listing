@@ -5,11 +5,16 @@ const Products = () => {
 	const [searchQuery, setSearchQuery] = useState("");
 	const [products, setProducts] = useState([]);
 	const [filteredData, setFilteredData] = useState([]);
+	const [loading, setLoading] = useState(false);
 
 	useEffect(() => {
+		setLoading(true);
 		fetch("https://fakestoreapi.com/products/")
 			.then((res) => res.json())
-			.then((data) => setProducts(data))
+			.then((data) => {
+				setLoading(false);
+				setProducts(data);
+			})
 			.catch((error) => {
 				console.error("Error fetching data:", error);
 			});

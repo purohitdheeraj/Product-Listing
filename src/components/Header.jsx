@@ -44,10 +44,7 @@ export const Header = () => {
 		<div>
 			<nav className="bg-white border-b-2 fixed w-full z-20 top-0 left-0 border-gray-200 dark:bg-gray-900">
 				<div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-					<Link
-						to="https://jwero.ai/"
-						className="flex items-center"
-					>
+					<Link to="/" className="flex items-center">
 						<img
 							src={Logo}
 							className="h-8 mr-3 border-2 dark:bg-slate-100"

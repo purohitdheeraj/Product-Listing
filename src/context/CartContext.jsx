@@ -22,8 +22,7 @@ const CartContextProvider = ({ children }) => {
 					? {
 							...product,
 							price: product.price + item.price,
-							quantity: product.quantity + 1,
-					  }
+							quantity: product.quantity + 1}
 					: product;
 			});
 			setCart(handleSameProduct);
