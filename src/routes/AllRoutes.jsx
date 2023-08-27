@@ -3,7 +3,7 @@ import { Cart, Products } from "../pages";
 
 export const AllRoutes = () => {
 	return (
-		<div>
+		<div className="jewro-main-layout max-w-7xl mx-auto">
 			<Routes>
 				<Route path="/" element={<h1>Home Page</h1>} />
 				<Route path="/products" element={<Products />} />
