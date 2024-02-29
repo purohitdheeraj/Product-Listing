@@ -1,11 +1,31 @@
 import { useState, useEffect } from 'react';
 import { ProductCard, Search } from '../components';
 
+// not useful in this case - sarry
+const useDebounce = (initialValue) => {
+	const [state, setState] = useState(initialValue);
+
+	useEffect(() => {
+		const handler = setTimeout(() => {
+			setState(initialValue);
+		}, 3000);
+
+		return () => clearTimeout(handler);
+	}, [initialValue]);
+
+	return state;
+};
+
 const Products = () => {
 	const [searchQuery, setSearchQuery] = useState('');
 	const [products, setProducts] = useState([]);
 	const [filteredData, setFilteredData] = useState([]);
 	const [loading, setLoading] = useState(false);
+	const [sortByState, setSortByState] = useState('high');
+
+	const debouncedValue = useDebounce(searchQuery);
+
+	console.log(debouncedValue);
 
 	useEffect(() => {
 		setLoading(true);
@@ -37,29 +57,37 @@ const Products = () => {
 		const newData = products.filter((product) =>
 			product.title
 				.toLowerCase()
-				.includes(String(searchTerm.toLowerCase()))
+				.includes(String(searchTerm))
 		);
 
 		setFilteredData(newData);
 	};
 
 	// const displayData = searchQuery ? filteredData : products;
+	const sortByLowPrice = () => {
+		const sortByLowPriceArr = [...filteredData].sort(
+			(a, b) => a.price - b.price
+		);
+		setFilteredData(sortByLowPriceArr);
+	};
+
+	const sortByHighPrice = () => {
+		const sortByHighPriceArr = [...filteredData].sort(
+			(a, b) => b.price - a.price
+		);
+		setFilteredData(sortByHighPriceArr);
+	};
 
 	const handlePriceSort = (e) => {
-		const { name, value } = e.target;
+		const { value } = e.target;
+		setSortByState(value);
 
 		if (value === 'low') {
-			const sortByLowPrice = [...filteredData].sort(
-				(a, b) => a.price - b.price
-			);
-			setFilteredData(sortByLowPrice);
+			sortByLowPrice();
 		}
 
 		if (value === 'high') {
-			const sortByHighPrice = [...filteredData].sort(
-				(a, b) => b.price - a.price
-			);
-			setFilteredData(sortByHighPrice);
+			sortByHighPrice();
 		}
 	};
 
